@@ -1,3 +1,16 @@
+-- Custom source repository for dependencies containing Apex customizations
+source-repository-package
+  type: git
+  location: https://github.com/apex-fusion/vector-ledger
+  tag: 1101aa8bd827fe1d8843c531d8ba0763c4b7ed64
+  subdir: eras/byron/ledger/impl
+
+source-repository-package
+  type: git
+  location: https://github.com/apex-fusion/vector-ledger
+  tag: 1101aa8bd827fe1d8843c531d8ba0763c4b7ed64
+  subdir: libs/cardano-ledger-core
+
 -- Custom repository for cardano haskell packages, see CONTRIBUTING for more
 repository cardano-haskell-packages
   url: https://chap.intersectmbo.org/
