@@ -1,0 +1,21 @@
+name: Check git dependencies
+
+on:
+  pull_request: # Required for workflows to be able to be approved from forks
+  merge_group:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+
+    - uses: actions/checkout@v3
+
+    - name: Check git dependencies
+      run: |
+        .github/bin/check-git-dependencies

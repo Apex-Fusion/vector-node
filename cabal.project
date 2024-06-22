@@ -1,0 +1,59 @@
+-- Custom repository for cardano haskell packages, see CONTRIBUTING for more
+repository cardano-haskell-packages
+  url: https://chap.apexfusion.org/
+  secure: True
+  root-keys:
+    4bc8fa1957ed203a2ed8806a1b1067a562af2ef78d950931bb4bb49155e2d1f8
+    aa88719f2753fd445fa468da34d31aee4750a1b2184425514e9abc2999bf2d73
+    c5faeffe492eb0d141d79f83bc3448f14940156dd07448b63e541849be2d6ed0
+
+-- See CONTRIBUTING for information about these, including some Nix commands
+-- you need to run if you change them
+index-state:
+  , hackage.haskell.org 2024-02-15T19:48:45Z
+--  , cardano-haskell-packages 2024-05-07T17:27:07Z
+
+packages:
+  cardano-git-rev
+  cardano-node
+  cardano-node-capi
+  cardano-node-chairman
+  cardano-submit-api
+  cardano-testnet
+  cardano-tracer
+  bench/cardano-topology
+  bench/locli
+  bench/plutus-scripts-bench
+  bench/tx-generator
+  trace-dispatcher
+  trace-resources
+  trace-forward
+
+program-options
+  ghc-options: -Werror
+
+test-show-details: direct
+
+-- Always write GHC env files, because they are needed for ghci.
+write-ghc-environment-files: always
+
+package cryptonite
+  -- Using RDRAND instead of /dev/urandom as an entropy source for key
+  -- generation is dubious. Set the flag so we use /dev/urandom by default.
+  flags: -support_rdrand
+
+package snap-server
+  flags: +openssl
+
+package bitvec
+   flags: -simd
+
+-- required for haddocks to build successfully
+package plutus-scripts-bench
+  haddock-options: "--optghc=-fplugin-opt PlutusTx.Plugin:defer-errors"
+
+-- IMPORTANT
+-- Do NOT add more source-repository-package stanzas here unless they are strictly
+-- temporary! Please read the section in CONTRIBUTING about updating dependencies.
+
+-- `smtp-mail` should depend on `crypton-connection` rather than `connection`!
