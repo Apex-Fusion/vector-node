@@ -14,9 +14,9 @@
 
 let
   inherit (pkgs) lib;
-  name = "cardano-node-${version}-${platform}";
+  name = "vector-node-${version}-${platform}";
   environments = lib.getAttrs
-    [ "mainnet" "preprod" "preview" "sanchonet" ]
+    [ "vector_testnet" ]
     pkgs.cardanoLib.environments;
   writeConfig = name: env:
     let
@@ -79,6 +79,10 @@ in pkgs.runCommand name {
   ${lib.optionalString (platform == "macos") (lib.concatMapStrings (exe: ''
     rewrite-libs bin ${exe}/bin/*
   '') exes)}
+
+  mv bin/cardano-node bin/vector-node
+  mv bin/cardano-cli bin/vector-cli
+  mv bin/cardano-submit-api bin/vector-submit-api
 
   ${if (platform == "win64")
     then "zip -r $out/${name}.zip ."

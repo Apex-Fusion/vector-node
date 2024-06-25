@@ -78,6 +78,7 @@ let
         utillinux         # System utilities for Linux
       ];
     };
+
     # set up /tmp (override with TMPDIR variable)
     extraCommands = ''
       mkdir -m 0777 tmp
@@ -107,9 +108,9 @@ let
   context = ./context;
 
   # Mainnet configuration used by the 'run' option
-  mainnetConfigFile = builtins.toFile "mainnet-config.json"
-    (builtins.toJSON commonLib.environments.mainnet.nodeConfig);
-  mainnetTopologyFile = commonLib.mkEdgeTopology { edgeNodes = [ commonLib.environments.mainnet.relaysNew ]; valency = 2; };
+  runConfigFile = builtins.toFile "run-config.json"
+    (builtins.toJSON commonLib.environments.vector_testnet.nodeConfig);
+  runTopologyFile = commonLib.mkEdgeTopology { edgeNodes = commonLib.environments.vector_testnet.relaysNew; valency = 1; edgePort = commonLib.environments.vector_testnet.edgePort; };
 
 in
   dockerTools.buildImage {
@@ -123,17 +124,17 @@ in
     # runAsRoot = '' ln -s ${cardano-node} bin/cardano-node '';
 
     extraCommands = ''
-      mkdir -p opt/cardano/config
-      mkdir -p opt/cardano/data
-      mkdir -p opt/cardano/ipc
-      mkdir -p opt/cardano/logs
+      mkdir -p opt/vector/config
+      mkdir -p opt/vector/data
+      mkdir -p opt/vector/ipc
+      mkdir -p opt/vector/logs
       mkdir -p usr/local/bin
-      ln -s ${mainnetConfigFile} opt/cardano/config/mainnet-config.json
-      ln -s ${mainnetTopologyFile} opt/cardano/config/mainnet-topology.json
+      ln -s ${runConfigFile} opt/vector/config/run-config.json
+      ln -s ${runTopologyFile} opt/vector/config/run-topology.json
       cp ${runNetwork}/bin/* usr/local/bin
       cp ${context}/bin/* usr/local/bin
-      ln -s ${cardano-node}/bin/cardano-node usr/local/bin/cardano-node
-      ln -s ${cardano-cli}/bin/cardano-cli usr/local/bin/cardano-cli
+      ln -s ${cardano-node}/bin/cardano-node usr/local/bin/vector-node
+      ln -s ${cardano-cli}/bin/cardano-cli usr/local/bin/vector-cli
     '';
     config = {
       EntryPoint = [ "entrypoint" ];

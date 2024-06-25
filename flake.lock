@@ -922,16 +922,17 @@
         "sodium": "sodium"
       },
       "locked": {
-        "lastModified": 1709083850,
-        "narHash": "sha256-6DQ89ktt8rRVV1pXEyX2JwPjaqS0mQkelkmJmka04rg=",
-        "owner": "input-output-hk",
-        "repo": "iohk-nix",
-        "rev": "1c793a53ac0bd99b795c2180eb23d37e8389a74b",
+        "lastModified": 1719305321,
+        "narHash": "sha256-NAK4hkVLxPUHatKPHbaxN/0UEqqW0ZJPuF1fgdLApto=",
+        "owner": "Apex-Fusion",
+        "repo": "vector-nix",
+        "rev": "329388731679167a54f6345f699f16f5357dcc62",
         "type": "github"
       },
       "original": {
-        "owner": "input-output-hk",
-        "repo": "iohk-nix",
+        "owner": "Apex-Fusion",
+        "ref": "vector-nix-base",
+        "repo": "vector-nix",
         "type": "github"
       }
     },
