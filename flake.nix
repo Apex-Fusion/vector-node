@@ -20,7 +20,7 @@
       inputs.hackage.follows = "hackageNix";
     };
     CHaP = {
-      url = "github:input-output-hk/cardano-haskell-packages?ref=repo";
+      url = "github:Apex-Fusion/vector-chap?ref=repo";
       flake = false;
     };
     utils.url = "github:numtide/flake-utils";
