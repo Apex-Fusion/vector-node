@@ -1,7 +1,7 @@
 cabal-version: 3.0
 
 name:                   cardano-node
-version:                8.7.0
+version:                8.7.0.0.0.0.0.1
 synopsis:               The cardano full node
 description:            The cardano full node.
 category:               Cardano,
@@ -137,20 +137,20 @@ library
                       , async
                       , base16-bytestring
                       , bytestring
-                      , cardano-api ^>= 8.33
+                      , cardano-api == 8.33.0.0.0.0.0.0.1
                       , cardano-crypto-class
                       , cardano-crypto-wrapper
                       , cardano-git-rev
-                      , cardano-ledger-alonzo
-                      , cardano-ledger-allegra
-                      , cardano-ledger-api
-                      , cardano-ledger-babbage
-                      , cardano-ledger-byron
-                      , cardano-ledger-conway
-                      , cardano-ledger-core
-                      , cardano-ledger-shelley
+                      , cardano-ledger-alonzo == 1.5.1.0.0.0.0.0.1
+                      , cardano-ledger-allegra == 1.2.5.0.0.0.0.0.1
+                      , cardano-ledger-api == 1.7.0.1.0.0.0.0.1
+                      , cardano-ledger-babbage == 1.5.1.0.0.0.0.0.1
+                      , cardano-ledger-byron == 1.0.0.3.0.0.0.0.1
+                      , cardano-ledger-conway == 1.11.0.0.0.0.0.0.1
+                      , cardano-ledger-core == 1.9.0.0.0.0.0.0.1
+                      , cardano-ledger-shelley == 1.8.0.0.0.0.0.0.1
                       , cardano-prelude
-                      , cardano-protocol-tpraos >= 1.0.2
+                      , cardano-protocol-tpraos == 1.0.3.7.0.0.0.0.1
                       , cardano-slotting >= 0.1.1
                       , cborg ^>= 0.2.4
                       , containers

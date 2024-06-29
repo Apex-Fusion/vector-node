@@ -20,12 +20,12 @@
       inputs.hackage.follows = "hackageNix";
     };
     CHaP = {
-      url = "github:input-output-hk/cardano-haskell-packages?ref=repo";
+      url = "github:Apex-Fusion/vector-chap?ref=repo";
       flake = false;
     };
     utils.url = "github:numtide/flake-utils";
     iohkNix = {
-      url = "github:input-output-hk/iohk-nix";
+      url = "github:Apex-Fusion/vector-nix?ref=vector-nix-base";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ops-lib = {
