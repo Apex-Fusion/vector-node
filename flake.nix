@@ -15,17 +15,20 @@
       flake = false;
     };
     haskellNix = {
-      url = "github:input-output-hk/haskell.nix";
+      url = "github:input-output-hk/haskell.nix?ref=3b6056f3866f88d1d16eaeb2e810d3ac0df0e7cd";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hackage.follows = "hackageNix";
     };
     CHaP = {
+      # url = "github:Apex-Fusion/vector-chap?ref=d3f7b7ba387c14d23b88fea331bb393ea7079b1c";
       url = "github:Apex-Fusion/vector-chap?ref=repo";
       flake = false;
     };
     utils.url = "github:numtide/flake-utils";
     iohkNix = {
-      url = "github:input-output-hk/iohk-nix";
+      url = "github:input-output-hk/iohk-nix?ref=af551ca93d969d9715fa9bf86691d9a0a19e89d9";
+      # url = "github:Apex-Fusion/vector-nix?ref=329388731679167a54f6345f699f16f5357dcc62";
+      #url = "github:input-output-hk/iohk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ops-lib = {

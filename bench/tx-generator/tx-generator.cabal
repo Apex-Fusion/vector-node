@@ -125,9 +125,9 @@ library
                       , network
                       , network-mux
                       , optparse-applicative-fork
-                      , ouroboros-consensus >= 0.6
-                      , ouroboros-consensus-cardano >= 0.5
-                      , ouroboros-consensus-diffusion >= 0.7.0
+                      , ouroboros-consensus == 0.13.0.1
+                      , ouroboros-consensus-cardano == 0.12.0.0
+                      , ouroboros-consensus-diffusion ^>= 0.9
                       , ouroboros-network
                       , ouroboros-network-api
                       , ouroboros-network-framework
