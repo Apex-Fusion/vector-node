@@ -1,4 +1,9 @@
 ######################################
+WARNING
+######################################
+This repo is a WIP and not ready for release. Do not run.
+
+######################################
 A Note from the Apex Fusion Foundation
 ######################################
 
