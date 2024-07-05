@@ -176,7 +176,8 @@ library
                       , lobemo-backend-ekg == 0.1.0.1
                       , lobemo-backend-monitoring == 0.1.0.0
                       , lobemo-backend-trace-forwarder == 0.1.0.0
-                      , mtl == 2.2.2
+                      , mtl
+--                      , mtl == 2.2.2
                       , network == 3.1.4.0
                       , network-mux ^>= 0.4
                       , nothunks == 0.1.4
