@@ -132,7 +132,7 @@ library
   other-modules:        Paths_cardano_node
   autogen-modules:      Paths_cardano_node
 
-  build-depends:        base == 4.14.3.0
+  build-depends:        base
                       , aeson == 2.2.1.0
                       , async == 2.2.4
                       , base16-bytestring == 1.0.2.0
