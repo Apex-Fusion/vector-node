@@ -164,7 +164,8 @@ library
                       , dns == 3.0.4
                       , ekg == 0.4.0.15.0.0.0.0.2
                       , ekg-core == 0.1.1.7.0.0.0.0.1
-                      , filepath == 1.4.2.1
+                      , filepath
+--                      , filepath == 1.4.2.1
                       , formatting == 7.2.0
                       , generic-data == 1.1.0.0
                       , hostname == 1.0
