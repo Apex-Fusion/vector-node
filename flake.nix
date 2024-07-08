@@ -15,7 +15,10 @@
       flake = false;
     };
     haskellNix = {
-      url = "github:input-output-hk/haskell.nix?ref=3b6056f3866f88d1d16eaeb2e810d3ac0df0e7cd";
+#      url = "github:input-output-hk/haskell.nix?ref=3b6056f3866f88d1d16eaeb2e810d3ac0df0e7cd";
+
+# test:
+      url = "github:input-output-hk/haskell.nix?ref=7c491c55157208575c70c7b8434e9d4a1cf173a6";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hackage.follows = "hackageNix";
     };
@@ -26,7 +29,8 @@
     };
     utils.url = "github:numtide/flake-utils";
     iohkNix = {
-      url = "github:input-output-hk/iohk-nix?ref=af551ca93d969d9715fa9bf86691d9a0a19e89d9";
+      # url = "github:input-output-hk/iohk-nix?ref=af551ca93d969d9715fa9bf86691d9a0a19e89d9";
+      url = "github:Apex-Fusion/vector-nix?ref=2c224168bb78dc36d6c19ff4863fcdfe0e7d968e";
       # url = "github:Apex-Fusion/vector-nix?ref=329388731679167a54f6345f699f16f5357dcc62";
       #url = "github:input-output-hk/iohk-nix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -5,7 +5,7 @@
 
 with lib; with builtins;
 let
-  cfg = config.services.cardano-node;
+  cfg = config.services.vector-node;
   envConfig = cfg.environments.${cfg.environment};
   runtimeDir = i : if cfg.runtimeDir i == null then cfg.stateDir i else "/run/${cfg.runtimeDir i}";
   suffixDir = base: i: "${base}${optionalString (i != 0) "-${toString i}"}";
@@ -43,7 +43,7 @@ let
 
   topology = i:
     if cfg.useSystemdReload
-    then "/etc/cardano-node/topology-${toString i}.yaml"
+    then "/etc/vector-node/topology-${toString i}.yaml"
     else selectTopology i;
 
   mkScript = cfg:
@@ -143,12 +143,12 @@ let
       ${toString cmd}'';
 in {
   options = {
-    services.cardano-node = {
+    services.vector-node = {
       enable = mkOption {
         type = types.bool;
         default = false;
         description = ''
-          Enable cardano-node, a node implementing ouroboros protocols
+          Enable vector-node, a node implementing ouroboros protocols
           (the blockchain protocols running cardano).
         '';
       };
@@ -187,9 +187,9 @@ in {
       cardanoNodePackages = mkOption {
         type = types.attrs;
         default = pkgs.cardanoNodePackages or (import ../. { inherit (pkgs) system; }).cardanoNodePackages;
-        defaultText = "cardano-node packages";
+        defaultText = "vector-node packages";
         description = ''
-          The cardano-node packages and library that should be used.
+          The vector-node packages and library that should be used.
           Main usage is sharing optimization:
           reduce eval time when service is instantiated multiple times.
         '';
@@ -202,18 +202,18 @@ in {
           else if cfg.eventlog then cfg.cardanoNodePackages.cardano-node.passthru.eventlogged
           else if cfg.asserts then cfg.cardanoNodePackages.cardano-node.passthru.asserted
           else cfg.cardanoNodePackages.cardano-node;
-        defaultText = "cardano-node";
+        defaultText = "vector-node";
         description = ''
-          The cardano-node package that should be used
+          The vector-node package that should be used
         '';
       };
 
       executable = mkOption {
         type = types.str;
-        default = "exec ${cfg.package}/bin/cardano-node";
-        defaultText = "cardano-node";
+        default = "exec ${cfg.package}/bin/vector-node";
+        defaultText = "vector-node";
         description = ''
-          The cardano-node executable invocation to use
+          The vector-node executable invocation to use
         '';
       };
 
@@ -312,7 +312,7 @@ in {
 
       stateDir = mkOption {
         type = funcToOr types.str;
-        default = "/var/lib/cardano-node";
+        default = "/var/lib/vector-node";
         apply = x : if (builtins.isFunction x) then x else i: x;
         description = ''
           Directory to store blockchain data, for each instance.
@@ -321,7 +321,7 @@ in {
 
       runtimeDir = mkOption {
         type = funcToOr nullOrStr;
-        default = suffixDir "cardano-node";
+        default = suffixDir "vector-node";
         apply = x : if builtins.isFunction x then x else if x == null then _: null else suffixDir x;
         description = ''
           Runtime directory relative to /run, for each instance
@@ -364,7 +364,7 @@ in {
 
       socketGroup = mkOption {
         type = types.str;
-        default = "cardano-node";
+        default = "vector-node";
         description = ''
           systemd socket group owner.
           Note: only applies to sockets created by systemd
@@ -525,11 +525,11 @@ in {
         type = types.bool;
         default = false;
         description = ''
-          If set, systemd will reload cardano-node service units instead of restarting them
+          If set, systemd will reload vector-node service units instead of restarting them
           if only the topology file has changed and p2p is in use.
 
           Cardano-node topology files will be stored in /etc as:
-            /etc/cardano-node/topology-''${toString i}.yaml
+            /etc/vector-node/topology-''${toString i}.yaml
 
           Enabling this option will also allow direct topology edits for tests when a full
           service re-deployment is not desired.
@@ -615,7 +615,7 @@ in {
       extraArgs = mkOption {
         type = types.listOf types.str;
         default = [];
-        description = ''Extra CLI args for 'cardano-node'.'';
+        description = ''Extra CLI args for 'vector-node'.'';
       };
 
       rts_flags_override = mkOption {
@@ -630,7 +630,7 @@ in {
         apply = args: if (args != [] || cfg.profilingArgs != [] || cfg.rts_flags_override != []) then
           ["+RTS"] ++ cfg.profilingArgs ++ args ++ cfg.rts_flags_override ++ ["-RTS"]
           else [];
-        description = ''Extra CLI args for 'cardano-node', to be surrounded by "+RTS"/"-RTS"'';
+        description = ''Extra CLI args for 'vector-node', to be surrounded by "+RTS"/"-RTS"'';
       };
 
       profilingArgs = mkOption {
@@ -656,39 +656,39 @@ in {
     stateDirBase = "/var/lib/";
     runDirBase = "/run/";
     genInstanceConf = f: listToAttrs (if cfg.instances > 1
-      then genList (i: let n = "cardano-node-${toString i}"; in nameValuePair n (f n i)) cfg.instances
-      else [ (nameValuePair "cardano-node" (f "cardano-node" 0)) ]); in lib.mkMerge [
+      then genList (i: let n = "vector-node-${toString i}"; in nameValuePair n (f n i)) cfg.instances
+      else [ (nameValuePair "vector-node" (f "vector-node" 0)) ]); in lib.mkMerge [
     {
-      users.groups.cardano-node.gid = 10016;
-      users.users.cardano-node = {
-        description = "cardano-node node daemon user";
+      users.groups.vector-node.gid = 10016;
+      users.users.vector-node = {
+        description = "vector-node node daemon user";
         uid = 10016;
-        group = "cardano-node";
+        group = "vector-node";
         isSystemUser = true;
       };
 
       environment.etc = mkIf cfg.useSystemdReload (foldl'
-        (acc: i: recursiveUpdate acc {"cardano-node/topology-${toString i}.yaml".source = selectTopology i;}) {}
+        (acc: i: recursiveUpdate acc {"vector-node/topology-${toString i}.yaml".source = selectTopology i;}) {}
       (range 0 (cfg.instances - 1)));
 
       ## TODO:  use http://hackage.haskell.org/package/systemd for:
       ##   1. only declaring success after we perform meaningful init (local state recovery)
       ##   2. heartbeat & watchdog functionality
       systemd.services = genInstanceConf (n: i: recursiveUpdate {
-        description   = "cardano-node node ${toString i} service";
+        description   = "vector-node node ${toString i} service";
         after         = [ "network-online.target" ]
           ++ (optional cfg.systemdSocketActivation "${n}.socket")
-          ++ (optional (cfg.instances > 1) "cardano-node.service");
+          ++ (optional (cfg.instances > 1) "vector-node.service");
         requires = optional cfg.systemdSocketActivation "${n}.socket"
-          ++ (optional (cfg.instances > 1) "cardano-node.service");
+          ++ (optional (cfg.instances > 1) "vector-node.service");
         wants = [ "network-online.target" ];
         wantedBy = [ "multi-user.target" ];
-        partOf = mkIf (cfg.instances > 1) ["cardano-node.service"];
+        partOf = mkIf (cfg.instances > 1) ["vector-node.service"];
         reloadTriggers = mkIf (cfg.useSystemdReload && cfg.useNewTopology) [ (selectTopology i) ];
         script = mkScript cfg i;
         serviceConfig = {
-          User = "cardano-node";
-          Group = "cardano-node";
+          User = "vector-node";
+          Group = "vector-node";
           ExecReload = mkIf (cfg.useSystemdReload && cfg.useNewTopology) "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
           Restart = "always";
           RuntimeDirectory = lib.mkIf (!cfg.systemdSocketActivation)
@@ -717,7 +717,7 @@ in {
           NoDelay = "yes";
           ReusePort = "yes";
           SocketMode = "0660";
-          SocketUser = "cardano-node";
+          SocketUser = "vector-node";
           SocketGroup = cfg.socketGroup;
           FreeBind = "yes";
         };
@@ -725,18 +725,18 @@ in {
     }
     {
       # oneshot service start allows to easily control all instances at once.
-      systemd.services.cardano-node = lib.mkIf (cfg.instances > 1) {
+      systemd.services.vector-node = lib.mkIf (cfg.instances > 1) {
         description = "Control all ${toString cfg.instances} at once.";
         enable  = true;
-        wants = genList (i: "cardano-node-${toString i}.service") cfg.instances;
+        wants = genList (i: "vector-node-${toString i}.service") cfg.instances;
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = "yes";
-          User = "cardano-node";
-          Group = "cardano-node";
-          ExecStart = "${pkgs.coreutils}/bin/echo Starting ${toString cfg.instances} cardano-node instances";
-          WorkingDirectory = "/var/lib/cardano-node";
-          StateDirectory = "cardano-node";
+          User = "vector-node";
+          Group = "vector-node";
+          ExecStart = "${pkgs.coreutils}/bin/echo Starting ${toString cfg.instances} vector-node instances";
+          WorkingDirectory = "/var/lib/vector-node";
+          StateDirectory = "vector-node";
         };
       };
     }
@@ -745,7 +745,7 @@ in {
         {
           assertion = builtins.all (i : lib.hasPrefix stateDirBase (cfg.stateDir i))
                                    (builtins.genList lib.trivial.id cfg.instances);
-          message = "The option services.cardano-node.stateDir should have ${stateDirBase}
+          message = "The option services.vector-node.stateDir should have ${stateDirBase}
                      as a prefix, for each instance!";
         }
         {

@@ -673,16 +673,16 @@
         "stackage": "stackage"
       },
       "locked": {
-        "lastModified": 1700441391,
-        "narHash": "sha256-oJqP1AUskUvr3GNUH97eKwaIUHdYgENS2kQ7GI9RI+c=",
+        "lastModified": 1701053834,
+        "narHash": "sha256-4sH4//POARjeKJv1mu8aU4W4A28GYqrj9KB3PqusHis=",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "3b6056f3866f88d1d16eaeb2e810d3ac0df0e7cd",
+        "rev": "7c491c55157208575c70c7b8434e9d4a1cf173a6",
         "type": "github"
       },
       "original": {
         "owner": "input-output-hk",
-        "ref": "3b6056f3866f88d1d16eaeb2e810d3ac0df0e7cd",
+        "ref": "7c491c55157208575c70c7b8434e9d4a1cf173a6",
         "repo": "haskell.nix",
         "type": "github"
       }
@@ -885,17 +885,17 @@
         "sodium": "sodium"
       },
       "locked": {
-        "lastModified": 1698746924,
-        "narHash": "sha256-8og+vqQPEoB2KLUtN5esGMDymT+2bT/rCHZt1NAe7y0=",
-        "owner": "input-output-hk",
-        "repo": "iohk-nix",
-        "rev": "af551ca93d969d9715fa9bf86691d9a0a19e89d9",
+        "lastModified": 1720461307,
+        "narHash": "sha256-s58UibMgxziuffIDcY/4EwcrUUkMMPGvqVvxFg/pZNA=",
+        "owner": "Apex-Fusion",
+        "repo": "vector-nix",
+        "rev": "2c224168bb78dc36d6c19ff4863fcdfe0e7d968e",
         "type": "github"
       },
       "original": {
-        "owner": "input-output-hk",
-        "ref": "af551ca93d969d9715fa9bf86691d9a0a19e89d9",
-        "repo": "iohk-nix",
+        "owner": "Apex-Fusion",
+        "ref": "2c224168bb78dc36d6c19ff4863fcdfe0e7d968e",
+        "repo": "vector-nix",
         "type": "github"
       }
     },
@@ -1741,11 +1741,11 @@
     "stackage": {
       "flake": false,
       "locked": {
-        "lastModified": 1700438989,
-        "narHash": "sha256-x+7Qtboko7ds8CU8pq2sIZiD45DauYoX9LxBfwQr/hs=",
+        "lastModified": 1701043780,
+        "narHash": "sha256-d5CYT7WGEaL6IFNmUg4JUb+onxI/tO1qgHs/TCIKB3A=",
         "owner": "input-output-hk",
         "repo": "stackage.nix",
-        "rev": "9c2015334cc77837b8454b3b10ef4f711a256f6f",
+        "rev": "cb49435b81adf0549589c51f39b5b38b4369f106",
         "type": "github"
       },
       "original": {
