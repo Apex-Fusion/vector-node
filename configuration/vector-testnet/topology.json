@@ -1,0 +1,14 @@
+{
+  "Producers": [
+    {
+      "addr": "relay-0.vector.testnet.apexfusion.org",
+      "port": 7522,
+      "valency": 1
+    },
+    {
+      "addr": "relay-1.vector.testnet.apexfusion.org",
+      "port": 7522,
+      "valency": 1
+    }
+  ]
+}
