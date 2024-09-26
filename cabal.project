@@ -1,7 +1,7 @@
 source-repository-package
   type: git
   location: https://github.com/apex-fusion/vector-ledger
-  tag: 7ca361329bef31753943a8769366ae14ddb197d8
+  tag: 61520b04bb338164481da75f59deb8e9e7e606a9
   subdir:
     libs/cardano-ledger-core
     eras/byron/ledger/impl
