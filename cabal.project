@@ -3,8 +3,46 @@ source-repository-package
   location: https://github.com/apex-fusion/vector-ledger
   tag: 61520b04bb338164481da75f59deb8e9e7e606a9
   subdir:
+    eras/allegra/impl
+    eras/alonzo/impl
+    eras/alonzo/test-suite
+    eras/babbage/impl
+    eras/babbage/test-suite
+    eras/conway/impl
+    eras/conway/test-suite
+    eras/mary/impl
+    eras/shelley/impl
+    eras/shelley/test-suite
+    eras/shelley-ma/test-suite
+    libs/cardano-ledger-api
     libs/cardano-ledger-core
+    libs/cardano-ledger-binary
+    libs/cardano-protocol-tpraos
+    libs/non-integral
+    libs/small-steps
+    libs/small-steps-test
+    libs/cardano-data
+    libs/set-algebra
+    libs/vector-map
+
+    -- == Byron era ==
+    -- byron-spec-chain:
+    eras/byron/chain/executable-spec
+    -- byron-spec-ledger:
+    eras/byron/ledger/executable-spec
+    -- cardano-ledger-byron:
     eras/byron/ledger/impl
+    -- cardano-ledger-byron-test:
+    eras/byron/ledger/impl/test
+    -- cardano-crypto-wrapper:
+    eras/byron/crypto
+    -- cardano-crypto-test:
+    eras/byron/crypto/test
+
+    -- Packages used during development and are not released to CHaPs:
+    libs/cardano-ledger-test
+    libs/plutus-preprocessor
+    libs/ledger-state
 
 -- Custom repository for cardano haskell packages, see CONTRIBUTING for more
 repository cardano-haskell-packages
