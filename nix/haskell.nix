@@ -35,7 +35,7 @@ let
           flags: +use-ghc-stub
       '';
       inputMap = {
-        "https://chap.intersectmbo.org/" = CHaP;
+        "https://chap.apexfusion.org/" = CHaP;
       };
       shell = {
         name = "cabal-dev-shell";

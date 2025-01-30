@@ -9,7 +9,7 @@ with lib;
 
 let
   # recover CHaP location from cardano's project
-  chap = cardanoNodeProject.args.inputMap."https://chap.intersectmbo.org/";
+  chap = cardanoNodeProject.args.inputMap."https://chap.apexfusion.org/";
   # build plan as computed by nix
   nixPlanJson = cardanoNodeProject.plan-nix.json;
 

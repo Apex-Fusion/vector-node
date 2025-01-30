@@ -121,6 +121,7 @@ in with final;
     in
     callPackage ./docker {
       exe = "cardano-node";
+      repoName = "apexfusion/vector-node";
       scripts = import ./scripts.nix {
         inherit pkgs;
         customConfigs = [ defaultConfig customConfig ];

@@ -3,17 +3,17 @@
     "CHaP": {
       "flake": false,
       "locked": {
-        "lastModified": 1715105614,
-        "narHash": "sha256-9zl3v82YkKXntzb6m14OfJG9c8YhKkmXYvHw1Sl4kqc=",
-        "owner": "intersectmbo",
-        "repo": "cardano-haskell-packages",
-        "rev": "7b1c2160379d3a0d1537ffb45d3163a5d98e6798",
+        "lastModified": 1719047187,
+        "narHash": "sha256-jRt+ZFTz7Ez8lRCHC+cN5iwOxyGNmqF9cO24Fh/S0YM=",
+        "owner": "Apex-Fusion",
+        "repo": "vector-chap",
+        "rev": "1a8a35a1a40517be461c75ac2e79288c5ce3a93a",
         "type": "github"
       },
       "original": {
-        "owner": "intersectmbo",
+        "owner": "Apex-Fusion",
         "ref": "repo",
-        "repo": "cardano-haskell-packages",
+        "repo": "vector-chap",
         "type": "github"
       }
     },
@@ -624,11 +624,11 @@
     "hackageNix": {
       "flake": false,
       "locked": {
-        "lastModified": 1709684582,
-        "narHash": "sha256-+rC8Vpaxdd4Nw2fJIn9wzAnzW5arILly5AkTG6chRAw=",
+        "lastModified": 1718757495,
+        "narHash": "sha256-xviuxucDjsQ2HbqzfwVyB4ZmDIyzOnf2oDbVtwBHIco=",
         "owner": "input-output-hk",
         "repo": "hackage.nix",
-        "rev": "c2ed9aa79252ed67a1fb694b3fffaf7dd7ead6d2",
+        "rev": "0bb764772a383a926e3f945397a0e59ab3c64d6d",
         "type": "github"
       },
       "original": {
@@ -922,16 +922,17 @@
         "sodium": "sodium"
       },
       "locked": {
-        "lastModified": 1709083850,
-        "narHash": "sha256-6DQ89ktt8rRVV1pXEyX2JwPjaqS0mQkelkmJmka04rg=",
-        "owner": "input-output-hk",
-        "repo": "iohk-nix",
-        "rev": "1c793a53ac0bd99b795c2180eb23d37e8389a74b",
+        "lastModified": 1719305321,
+        "narHash": "sha256-NAK4hkVLxPUHatKPHbaxN/0UEqqW0ZJPuF1fgdLApto=",
+        "owner": "Apex-Fusion",
+        "repo": "vector-nix",
+        "rev": "329388731679167a54f6345f699f16f5357dcc62",
         "type": "github"
       },
       "original": {
-        "owner": "input-output-hk",
-        "repo": "iohk-nix",
+        "owner": "Apex-Fusion",
+        "ref": "vector-nix-base",
+        "repo": "vector-nix",
         "type": "github"
       }
     },

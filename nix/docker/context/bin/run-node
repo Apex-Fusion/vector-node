@@ -3,29 +3,29 @@
 # https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail
 set -eo pipefail
 
-echo "Running the cardano node ..."
+echo "Running the vector node ..."
 
 # Define a few defaults
-CARDANO_CONFIG_BASE="/opt/cardano/config"
+CARDANO_CONFIG_BASE="/opt/vector/config"
 
 if [[ -z $CARDANO_CONFIG ]]; then
-  CARDANO_CONFIG="$CARDANO_CONFIG_BASE/mainnet-config.json"
+  CARDANO_CONFIG="$CARDANO_CONFIG_BASE/run-config.json"
 fi
 
 if [[ -z $CARDANO_TOPOLOGY ]]; then
-  CARDANO_TOPOLOGY="$CARDANO_CONFIG_BASE/mainnet-topology.json"
+  CARDANO_TOPOLOGY="$CARDANO_CONFIG_BASE/run-topology.json"
 fi
 
 if [[ -z $CARDANO_DATABASE_PATH ]]; then
-  CARDANO_DATABASE_PATH="/opt/cardano/data"
+  CARDANO_DATABASE_PATH="/opt/vector/data"
 fi
 
 if [[ -z $CARDANO_SOCKET_PATH ]]; then
-  CARDANO_SOCKET_PATH="/opt/cardano/ipc/socket"
+  CARDANO_SOCKET_PATH="/opt/vector/ipc/socket"
 fi
 
 if [[ -z $CARDANO_LOG_DIR ]]; then
-  CARDANO_LOG_DIR="/opt/cardano/logs"
+  CARDANO_LOG_DIR="/opt/vector/logs"
 fi
 
 if [[ -z $CARDANO_BIND_ADDR ]]; then
@@ -33,7 +33,7 @@ if [[ -z $CARDANO_BIND_ADDR ]]; then
 fi
 
 if [[ -z $CARDANO_PORT ]]; then
-  CARDANO_PORT=3001
+  CARDANO_PORT=7522
 fi
 
 if [[ -z $CARDANO_BLOCK_PRODUCER ]]; then
@@ -123,8 +123,8 @@ runRelayNode () {
 
   effopts+=(${options[@]})
 
-  echo "cardano-node run ${effopts[@]}"
-  exec /usr/local/bin/cardano-node run ${effopts[@]}
+  echo "vector-node run ${effopts[@]}"
+  exec /usr/local/bin/vector-node run ${effopts[@]}
 }
 
 #####################################################################
@@ -145,8 +145,8 @@ runBlockProducerNode () {
 
   effopts+=(${options[@]})
 
-  echo "cardano-node run ${effopts[@]}"
-  exec /usr/local/bin/cardano-node run ${effopts[@]}
+  echo "vector-node run ${effopts[@]}"
+  exec /usr/local/bin/vector-node run ${effopts[@]}
 }
 
 # Shift the first option by one index

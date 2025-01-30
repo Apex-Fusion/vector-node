@@ -1,7 +1,7 @@
 cabal-version: 3.0
 
 name:                   cardano-node
-version:                8.9.3
+version:                8.9.3.0.0.0.0.5
 synopsis:               The cardano full node
 description:            The cardano full node.
 category:               Cardano,
@@ -50,7 +50,7 @@ common text
   if impl(ghc == 8.10.7) && os(darwin) && arch(aarch64)
     build-depends: text >= 1.2.5.0
   else
-    build-depends: text >= 2.0
+    build-depends: text >= 2.0 || == 1.2.4.1
 
 library
   import:               project-config
@@ -144,10 +144,10 @@ library
                       , async
                       , base16-bytestring
                       , bytestring
-                      , cardano-api ^>= 8.39.3.0
+                      , cardano-api
                       , cardano-crypto-class
                       , cardano-crypto-wrapper
-                      , cardano-git-rev
+                      , cardano-git-rev == 0.2.0.0 || == 0.1.3.0
                       , cardano-ledger-alonzo
                       , cardano-ledger-allegra
                       , cardano-ledger-api
@@ -157,7 +157,7 @@ library
                       , cardano-ledger-core
                       , cardano-ledger-shelley
                       , cardano-prelude
-                      , cardano-protocol-tpraos >= 1.0.2
+                      , cardano-protocol-tpraos
                       , cardano-slotting >= 0.1.1
                       , cborg ^>= 0.2.4
                       , containers
@@ -228,8 +228,8 @@ executable cardano-node
 
   build-depends:        base
                       , cardano-crypto-class
-                      , cardano-git-rev
-                      , cardano-node
+                      , cardano-git-rev == 0.2.0.0 || == 0.1.3.0
+                      , cardano-node == 8.9.3.0.0.0.0.5
                       , optparse-applicative-fork
                       , text
 
@@ -245,7 +245,7 @@ test-suite cardano-node-test
                       , bytestring
                       , cardano-crypto-class
                       , cardano-crypto-wrapper
-                      , cardano-api:{cardano-api, internal}
+                      , cardano-api
                       , cardano-ledger-core
                       , cardano-node
                       , cardano-slotting

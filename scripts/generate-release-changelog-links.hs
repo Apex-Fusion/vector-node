@@ -157,7 +157,7 @@ getCHaPPackagesMap = do
 
 chapPackagesURL :: Url 'Https
 chapPackagesURL =
-  https "chap.intersectmbo.org" /: "foliage" /: "packages.json"
+  https "chap.apexfusion.org" /: "foliage" /: "packages.json"
 
 lookupCHaPEntry :: PkgId -> PackagesMap -> Shell CHaPEntry
 lookupCHaPEntry (PkgId (PkgName n) (Ver v)) packagesMap = do

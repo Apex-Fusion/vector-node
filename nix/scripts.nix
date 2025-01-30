@@ -6,11 +6,11 @@ let
   mkScript = envConfig: let
     service = evalService {
       inherit pkgs customConfigs;
-      serviceName = "cardano-node";
+      serviceName = "vector-node";
       modules = [
         ./nixos/cardano-node-service.nix
         ({config, ...}: {
-          services.cardano-node = let cfg = config.services.cardano-node; in {
+          services.vector-node = let cfg = config.services.vector-node; in {
             hostAddr = mkDefault "0.0.0.0";
             environment = mkDefault envConfig.name;
             nodeConfig = cfg.environments.${cfg.environment}.nodeConfig;
@@ -22,7 +22,7 @@ let
         })
       ];
     };
-  scriptBin = pkgs.writeScriptBin "cardano-node-${service.environment}" ''
+  scriptBin = pkgs.writeScriptBin "vector-node-${service.environment}" ''
     #!${pkgs.runtimeShell}
     export PATH=$PATH:${makeBinPath [ pkgs.coreutils ]}
     set -euo pipefail
@@ -30,7 +30,7 @@ let
     ${service.script} $@
   '';
   in scriptBin // {
-    exePath = "${scriptBin}/bin/cardano-node-${service.environment}";
+    exePath = "${scriptBin}/bin/vector-node-${service.environment}";
   };
 
 in forEnvironments (environment: recurseIntoAttrs rec {
