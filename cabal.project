@@ -13,6 +13,54 @@ index-state:
   , hackage.haskell.org 2023-11-09T23:50:15Z
   , cardano-haskell-packages 2023-11-19T22:33:04Z
 
+
+source-repository-package
+  type: git
+  location: https://github.com/apex-fusion/vector-api
+  --sha256: 1baw1xbrjhzqbhfcs4d1wrs5ln0ssiyn0rif0dpn1cp5hmyacirg
+  tag: c0b752a6ebe1b20a7f76f40b25f8d37a365f09e8
+  subdir:
+    cardano-api
+    cardano-api-gen
+
+source-repository-package
+  type: git
+  location: https://github.com/apex-fusion/vector-ledger
+  --sha256: 1ba70wjddkfyahix73ywmxbi2wdgnklxrl43iv87ric2mdzd9jbg
+  tag: 7ad79d0fded1522ee9e94ce71669b488a87b61fb
+  subdir:
+    eras/allegra/impl
+    eras/alonzo/impl
+    eras/alonzo/test-suite
+    eras/babbage/impl
+    eras/babbage/test-suite
+    eras/conway/impl
+    eras/conway/test-suite
+    eras/mary/impl
+    eras/shelley/impl
+    eras/shelley/test-suite
+    eras/shelley-ma/test-suite
+    libs/cardano-ledger-api
+    libs/cardano-ledger-core
+    libs/cardano-ledger-binary
+    libs/cardano-protocol-tpraos
+    libs/non-integral
+    libs/small-steps
+    libs/small-steps-test
+    libs/cardano-data
+    libs/set-algebra
+    libs/vector-map
+    eras/byron/chain/executable-spec
+    eras/byron/ledger/executable-spec
+    eras/byron/ledger/impl
+    eras/byron/ledger/impl/test
+    eras/byron/crypto
+    eras/byron/crypto/test
+    libs/cardano-ledger-test
+    libs/plutus-preprocessor
+    libs/ledger-state
+
+
 packages:
   cardano-git-rev
   cardano-node
