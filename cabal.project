@@ -62,8 +62,8 @@ package plutus-scripts-bench
 source-repository-package
   type: git
   location: https://github.com/apex-fusion/vector-api
-  --sha256: 1baw1xbrjhzqbhfcs4d1wrs5ln0ssiyn0rif0dpn1cp5hmyacirg
-  tag: c0b752a6ebe1b20a7f76f40b25f8d37a365f09e8
+  --sha256: 1jn0ngipkjhhs3fvjap52nv15wy84sgygaxn6iyxi8jkdkfa2kfp
+  tag: 366b0957681d6dfc7ccf597d31eb766466ab3e50
   subdir:
     cardano-api
     cardano-api-gen
@@ -71,8 +71,8 @@ source-repository-package
 source-repository-package
   type: git
   location: https://github.com/apex-fusion/vector-ledger
-  --sha256: 1ba70wjddkfyahix73ywmxbi2wdgnklxrl43iv87ric2mdzd9jbg
-  tag: 7ad79d0fded1522ee9e94ce71669b488a87b61fb
+  --sha256: 0fb93wgfpbsvqcj1k14v0pnxdplry828pl6wn9grs0mvw539dghg
+  tag: 37f5c1e11484e12abe03bc704bcc22630e223290
   subdir:
     eras/allegra/impl
     eras/alonzo/impl
@@ -104,5 +104,4 @@ source-repository-package
     libs/cardano-ledger-test
     libs/plutus-preprocessor
     libs/ledger-state
-
 
