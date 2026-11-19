@@ -23,7 +23,7 @@ env:
 jobs:
   wait-for-hydra:
     name: "Wait for hydra check-runs"
-    runs-on: ubuntu-latest
+    runs-on: nixos
     steps:
     - name: Get specific check run status
       run: |
@@ -48,7 +48,7 @@ jobs:
       matrix:
         arch: [linux, macos, win64]
     name: "Download Asset from the Cache"
-    runs-on: ubuntu-latest
+    runs-on: nixos
     steps:
       - name: Install Nix with good defaults
         uses: input-output-hk/install-nix-action@v20
@@ -87,7 +87,7 @@ jobs:
   upload-assets:
     needs: [pull]
     name: "Upload Assets"
-    runs-on: ubuntu-latest
+    runs-on: nixos
     steps:
       - uses: actions/download-artifact@v3
         with:

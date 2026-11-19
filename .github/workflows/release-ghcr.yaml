@@ -23,7 +23,7 @@ env:
 jobs:
   wait-for-hydra:
     name: "Wait for hydra check-runs"
-    runs-on: ubuntu-latest
+    runs-on: nixos
     steps:
     - name: Waiting for ci/hydra-build:required to complete
       run: |
@@ -45,7 +45,7 @@ jobs:
   build:
     needs: [wait-for-hydra]
     name: "Upload to ghcr.io"
-    runs-on: ubuntu-latest
+    runs-on: nixos
     steps:
     - name: Install Nix
       uses: input-output-hk/install-nix-action@v20
