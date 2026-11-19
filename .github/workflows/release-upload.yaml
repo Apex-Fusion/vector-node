@@ -24,6 +24,7 @@ jobs:
   wait-for-hydra:
     name: "Wait for hydra check-runs"
     runs-on: nixos
+    timeout-minutes: 30
     steps:
     - name: Get specific check run status
       run: |
@@ -49,6 +50,7 @@ jobs:
         arch: [linux, macos, win64]
     name: "Download Asset from the Cache"
     runs-on: nixos
+    timeout-minutes: 30
     steps:
       - name: Install Nix with good defaults
         uses: input-output-hk/install-nix-action@v20
@@ -78,7 +80,7 @@ jobs:
               cp result/cardano-node-*-*.zip .
               ;;              
           esac
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v7
         with:
           name: ${{ github.sha }}-${{ matrix.arch }}       
           path: cardano-node-*-*.*
@@ -88,14 +90,15 @@ jobs:
     needs: [pull]
     name: "Upload Assets"
     runs-on: nixos
+    timeout-minutes: 30
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v8
         with:
           name: ${{ github.sha }}-linux
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v8
         with:
           name: ${{ github.sha }}-macos
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v8
         with:
           name: ${{ github.sha }}-win64
       - name: Release

@@ -3,11 +3,19 @@ name: Actionlint
 on:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   actionlint:
     runs-on: nixos
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install xz-utils (the Nix installer needs xz)
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends xz-utils
 
       # We want to install Nix to provision shellcheck, so that actionlint doesn't install
       # its own shellcheck. This will also make sure that this pipeline runs using
