@@ -4,9 +4,14 @@ on:
   pull_request: # Required for workflows to be able to be approved from forks
   merge_group:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     runs-on: nixos
+    timeout-minutes: 15
 
     defaults:
       run:
@@ -15,6 +20,12 @@ jobs:
     steps:
 
     - uses: actions/checkout@v3
+
+    - name: Install yq (the runner image has no yq)
+      run: |
+        curl -fsSL -o /tmp/yq https://github.com/mikefarah/yq/releases/download/v4.54.3/yq_linux_amd64
+        echo "129534601871538efe0ba4c5e62a34fb1d5f469bcb975c4fddeb467d82974973  /tmp/yq" | sha256sum --check
+        sudo install -m 0755 /tmp/yq /usr/local/bin/yq
 
     - name: Check git dependencies
       run: |

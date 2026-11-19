@@ -9,11 +9,18 @@ name: Shellcheck
 on:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   shellcheck:
     runs-on: nixos
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Install xz-utils (the Nix installer needs xz)
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends xz-utils
       - name: Install Nix with good defaults
         uses: input-output-hk/install-nix-action@v20
         with:

@@ -8,12 +8,16 @@ on:
 jobs:
   build:
     runs-on: nixos
+    timeout-minutes: 30
 
     defaults:
       run:
         shell: bash
 
     steps:
+    - name: Install xz-utils (the Nix installer needs xz)
+      run: sudo apt-get update && sudo apt-get install -y --no-install-recommends xz-utils
+
     - name: Install Nix
       uses: cachix/install-nix-action@v18
       with:
