@@ -1,0 +1,4 @@
+# The org runners use the label nixos. Without this entry actionlint rejects `runs-on: nixos`.
+self-hosted-runner:
+  labels:
+    - nixos
