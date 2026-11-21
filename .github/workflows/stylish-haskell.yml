@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: nixos
+    runs-on: self-hosted
     timeout-minutes: 15
 
     strategy:

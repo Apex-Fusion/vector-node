@@ -9,7 +9,7 @@ concurrency:
 
 jobs:
   actionlint:
-    runs-on: nixos
+    runs-on: self-hosted
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
